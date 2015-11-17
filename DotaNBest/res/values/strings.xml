@@ -8,5 +8,7 @@
     <string name="title_section1">英雄</string>
     <string name="title_section2">物品</string>
     <string name="title_section3">攻略</string>
+    <string name="dota1">dota1</string>
+    <string name="dota2">dota2</string>
 
 </resources>

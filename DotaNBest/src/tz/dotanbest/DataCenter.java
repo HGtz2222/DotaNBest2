@@ -86,4 +86,14 @@ public class DataCenter {
 	public static List<Map<String, Object>> getUnusedData(){
 		return new ArrayList<Map<String, Object>>();
 	}
+
+	private static int mode = 1; // 用来判定dota1/dota2的状态
+	
+	public static int changeMode() {
+		if (mode == 1)
+			mode = 2;
+		else if (mode == 2)
+			mode = 1;
+		return mode;
+	}
 }
