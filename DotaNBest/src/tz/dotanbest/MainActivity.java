@@ -112,7 +112,9 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	private void refreshData(int mode) {
-		
+		// TODO
+		// 计划方案: 
+		// 重新创建fragment
 	}
 
 	@Override
