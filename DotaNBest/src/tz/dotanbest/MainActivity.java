@@ -9,6 +9,7 @@ import tz.dotadata.R;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.provider.ContactsContract.Contacts.Data;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -102,11 +103,16 @@ public class MainActivity extends FragmentActivity implements
 			Toast.makeText(this, "ÇÐ»»Ä£Ê½", Toast.LENGTH_SHORT).show();
 			int mode = DataCenter.changeMode();
 			item.setTitle("DOTA"+mode);
+			refreshData(mode);
 			break;
 		default:
 			break;
 		}
 		return true;
+	}
+
+	private void refreshData(int mode) {
+		
 	}
 
 	@Override
@@ -175,6 +181,7 @@ public class MainActivity extends FragmentActivity implements
 	 * displays dummy text.
 	 */
 	public static class DummySectionFragment extends Fragment {
+		public static final String ARG_MODE = "mode";
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
@@ -188,18 +195,33 @@ public class MainActivity extends FragmentActivity implements
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			int pos = getArguments().getInt(ARG_SECTION_NUMBER);
+			int mode = DataCenter.getMode();
 			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
 					container, false);
 			GridView dummyGridView = (GridView) rootView
 					.findViewById(R.id.gridview);
 			List<Map<String, Object>> data_list = null;
-			if (pos == 1){
-				data_list = DataCenter.getHeroData();
-			}else if (pos == 2){
-				data_list = DataCenter.getEquData();
+			if (mode == 1){
+				if (pos == 1){
+					data_list = DataCenter.getHero1Data();
+				}else if (pos == 2){
+					data_list = DataCenter.getEqu1Data();
+				}else{
+					data_list = DataCenter.getUnusedData();
+				}
+			}
+			else if (mode == 2){
+				if (pos == 1){
+					data_list = DataCenter.getHero2Data();
+				}else if (pos == 2){
+					data_list = DataCenter.getEqu2Data();
+				}else{
+					data_list = DataCenter.getUnusedData();
+				}
 			}else{
 				data_list = DataCenter.getUnusedData();
 			}
+
 			String [] from ={"image","text"};
 	        int [] to = {R.id.image,R.id.text};
 			SimpleAdapter sim_adapter = new SimpleAdapter(getActivity(), data_list, R.layout.item, from, to);
