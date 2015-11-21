@@ -7,14 +7,16 @@ import java.util.Map;
 import tz.dotadata.R;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts.Data;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -115,6 +117,12 @@ public class MainActivity extends FragmentActivity implements
 		// TODO
 		// 计划方案: 
 		// 重新创建fragment
+//		DummySectionFragment fragment = (DummySectionFragment)mSectionsPagerAdapter.instantiateItem(mViewPager, 1);
+//		FragmentManager fm = getSupportFragmentManager();
+//		android.support.v4.app.FragmentTransaction trans = fm.beginTransaction();
+//		trans.remove(fragment);
+//		trans.commit();
+		mSectionsPagerAdapter.notifyDataSetChanged();
 	}
 
 	@Override
@@ -150,11 +158,17 @@ public class MainActivity extends FragmentActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
+			Log.e("tz", "In getItem: " + position);
 			Fragment fragment = new DummySectionFragment();
 			Bundle args = new Bundle();
 			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
 			fragment.setArguments(args);
 			return fragment;
+		}
+		
+		@Override
+		public int getItemPosition(Object object) {
+			return POSITION_NONE;//返回这个表示该对象已改变,需要刷新
 		}
 
 		@Override
