@@ -102,27 +102,27 @@ public class DataCenter {
 	}
 
 	private static int[] hero2_icon = {
-		R.drawable.hero_icon_bm, 
-		R.drawable.hero_icon_chenmo,
-		R.drawable.hero_icon_es,
-		R.drawable.hero_icon_jugg,
-		R.drawable.hero_icon_lanpangpang,
-		R.drawable.hero_icon_lianjin,
-		R.drawable.hero_icon_paipai,
-		R.drawable.hero_icon_sf,
-		R.drawable.hero_icon_tf
+		R.drawable.hero2_icon_bm, 
+		R.drawable.hero2_icon_sil,
+		R.drawable.hero2_icon_es,
+		R.drawable.hero2_icon_jugg,
+		R.drawable.hero2_icon_omg,
+		R.drawable.hero2_icon_lianjin,
+		R.drawable.hero2_icon_paipai,
+		R.drawable.hero2_icon_sf,
+		R.drawable.hero2_icon_tf
 		};
 	
 	private static String[] hero2_name = {
 		"兽王",
 		"沉默术士",
-		"撼地神牛",
+		"撼地者",
 		"主宰",
 		"食人魔法师",
 		"炼金术士",
 		"熊战士",
 		"影魔",
-		"屠夫"
+		"帕吉"
 	};
 	
 	public static List<Map<String, Object>> getHero2Data() {
