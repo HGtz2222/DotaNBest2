@@ -100,12 +100,12 @@ public class MainActivity extends FragmentActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		// action with ID action_refresh was selected
-		// TODO
 		case R.id.item1:
-			Toast.makeText(this, "切换模式", Toast.LENGTH_SHORT).show();
 			int mode = DataCenter.changeMode();
 			item.setTitle("DOTA"+mode);
 			refreshData(mode);
+			// String test = DataCenter.get_test_str(this);
+			// Toast.makeText(this, test, Toast.LENGTH_SHORT).show();
 			break;
 		default:
 			break;
@@ -114,14 +114,6 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	private void refreshData(int mode) {
-		// TODO
-		// 计划方案: 
-		// 重新创建fragment
-//		DummySectionFragment fragment = (DummySectionFragment)mSectionsPagerAdapter.instantiateItem(mViewPager, 1);
-//		FragmentManager fm = getSupportFragmentManager();
-//		android.support.v4.app.FragmentTransaction trans = fm.beginTransaction();
-//		trans.remove(fragment);
-//		trans.commit();
 		mSectionsPagerAdapter.notifyDataSetChanged();
 	}
 
@@ -217,27 +209,15 @@ public class MainActivity extends FragmentActivity implements
 			GridView dummyGridView = (GridView) rootView
 					.findViewById(R.id.gridview);
 			List<Map<String, Object>> data_list = null;
-			if (mode == 1){
-				if (pos == 1){
-					data_list = DataCenter.getHero1Data();
-				}else if (pos == 2){
-					data_list = DataCenter.getEqu1Data();
-				}else{
-					data_list = DataCenter.getUnusedData();
-				}
-			}
-			else if (mode == 2){
-				if (pos == 1){
-					data_list = DataCenter.getHero2Data();
-				}else if (pos == 2){
-					data_list = DataCenter.getEqu2Data();
-				}else{
-					data_list = DataCenter.getUnusedData();
-				}
+			
+			if (pos == 1){
+				data_list = DataCenter.getHeroAndEquData(DataCenter.HERO);
+			}else if (pos == 2){
+				data_list = DataCenter.getHeroAndEquData(DataCenter.EQU);
 			}else{
 				data_list = DataCenter.getUnusedData();
 			}
-
+			
 			String [] from ={"image","text"};
 	        int [] to = {R.id.image,R.id.text};
 			SimpleAdapter sim_adapter = new SimpleAdapter(getActivity(), data_list, R.layout.item, from, to);

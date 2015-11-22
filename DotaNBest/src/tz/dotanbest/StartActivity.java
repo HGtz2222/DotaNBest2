@@ -8,11 +8,12 @@ import android.content.Intent;
 import android.view.Menu;
 
 public class StartActivity extends Activity {
-	private final int SPLASH_DISPLAY_LENGHT = 2500;
+	private final int SPLASH_DISPLAY_LENGHT = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        DataCenter.init(this);
 		new Handler().postDelayed(new Runnable() {  
             public void run() {  
                 Intent mainIntent = new Intent(StartActivity.this,  
