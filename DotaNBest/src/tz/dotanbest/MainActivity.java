@@ -9,6 +9,7 @@ import tz.dotadata.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts.Data;
 import android.support.v4.app.Fragment;
@@ -23,8 +24,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements
@@ -203,7 +208,6 @@ public class MainActivity extends FragmentActivity implements
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			int pos = getArguments().getInt(ARG_SECTION_NUMBER);
-			int mode = DataCenter.getMode();
 			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
 					container, false);
 			GridView dummyGridView = (GridView) rootView
@@ -222,6 +226,17 @@ public class MainActivity extends FragmentActivity implements
 	        int [] to = {R.id.image,R.id.text};
 			SimpleAdapter sim_adapter = new SimpleAdapter(getActivity(), data_list, R.layout.item, from, to);
 			dummyGridView.setAdapter(sim_adapter);
+			dummyGridView.setOnItemClickListener(new OnItemClickListener(){
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					TextView text = (TextView)arg1.findViewById(R.id.text);
+					String name = (String) text.getText();
+					Intent mainIntent = new Intent(getActivity(), HeroDetailActivity.class);
+					mainIntent.putExtra("hero_name", name);
+					getActivity().startActivity(mainIntent);  
+				}
+			});
 			return rootView;
 		}
 	}

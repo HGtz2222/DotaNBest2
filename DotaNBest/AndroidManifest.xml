@@ -24,8 +24,11 @@
         </activity>
         <activity
             android:name="tz.dotanbest.MainActivity"
-            android:label="@string/title_activity_main"
-             >
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="tz.dotanbest.HeroDetailActivity"
+            android:label="@string/title_activity_hero_detail" >
         </activity>
     </application>
 

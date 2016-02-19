@@ -10,5 +10,7 @@
     <string name="title_section3">攻略</string>
     <string name="dota1">dota1</string>
     <string name="dota2">dota2</string>
+    <string name="title_activity_hero_detail">HeroDetailActivity</string>
+    <string name="hero_name">英雄名称</string>
 
 </resources>
